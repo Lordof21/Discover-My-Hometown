@@ -1,0 +1,404 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --color_1: rgb(240, 245, 249);
+  --color_2: rgb(201, 214, 223);
+  --color_3: rgb(82, 97, 107);
+  --color_4: rgb(30, 32, 34);
+  --main-color: rgb(201, 214, 223);
+  --black-color: rgb(30, 32, 34); /*buraası değişme ihtimali var*/
+  border: 0.1rem solid rgba(255, 255, 255, 0.4); /*rgba(255,255,255,0.4) olabilir*/
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*merkez padding border ve margini kutu olarak alır*/
+  outline: none; /*Bu özellik, bir elementin odaklandığında etrafında otomatik olarak oluşan dış çizgiyi (outline) kaldırır.*/
+  border: none;
+  text-decoration: none; /*alt üst ve üstüü çizgileri siler a href te çok kullanlır ,süslemeleri siler*/
+  text-transform: capitalize; /* ilk harfleri büyük diğer harfleri küçk yazar*/
+  transition: 0.2 ease; /* animasyonları 0.2 saniyede e yavaş başlayıp yavaş bitiriyor*/
+}
+
+/*! base html code */
+/* 1 rem 16px ama aşağıdaki dönüşümle 10px olacak yani 10px == 1rem */
+html {
+  font-size: 62.5%;
+  overflow-x: hidden; /* x ekseninde scrol çıkmaz*/
+  scroll-padding-top: 9rem; /*Anlamı: Bu özellik, sayfanın üst kısmında sabitlenmiş bir öğenin (örneğin, bir header) yüksekliğini dikkate alarak, sayfanın gerçek içeriğinin ne kadar aşağıdan başlayacağını belirler.*/
+  scroll-behavior: smooth; /*kaydırma işlemni yumuşatır*/
+}
+html::-webkit-scrollbar {
+  /*Bu seçici, tüm HTML belgesindeki Webkit tarayıcılarının kaydırma çubuklarını hedefler.*/
+  width: 0.9rem;
+  background-color: var(--color_1);
+}
+html::-webkit-scrollbar-track /*Kaydırma çubuğunun içindeki rayı (kaydırma tutacağının hareket ettiği alan) hedefler.*/ {
+  background-color: transparent; /*arka planını şeffaf yapar*/
+}
+html::-webkit-scrollbar-thumb {
+  /*Kaydırma tutacağını (kaydırma işlemini yaptığımız kısım) hedefler.*/
+  border-radius: 3rem;
+  background-color: var(--black-color);
+}
+
+body {
+  background-color: var(--color_2);
+}
+section {
+  padding: 3.5rem 7%; /*Sağ ve sol kenarlara, elementin genişliğinin %7'si kadar boşluk ekler.*/
+}
+.btn {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 2rem 3.75rem;
+  border-radius: 30rem;
+  font-size: 1.7rem; /*metnin boyutunu 1.7rem olarak ayarlar.*/
+  color: #fff;
+  background-color: var(--black-color);
+  cursor: pointer; /*Fare imleci butonun üzerine geldiğinde imleç şeklini işaretçiye (el) dönüştürür. Bu, kullanıcıya tıklanabilir bir öğe olduğunu belirtir.*/
+}
+.heading {
+  color: var(--black-color);
+  text-transform: uppercase; /*içinde bulunduğu tüm harfleri büyük harfle yazdırmasını sağlar.*/
+  font-size: 3.5rem;
+  margin-bottom: 3.5rem;
+  border-bottom: 0.17rem solid #fff;
+}
+
+/*  */
+.search-input {
+  font-size: 1.6rem;
+  color: var(--black-color);
+  padding: 1rem;
+  text-transform: none;
+  border-radius: 3rem;
+}
+/*  */
+
+/*! header start*/
+
+.header .search-form {
+  position: absolute; /*Bu özellik, öğenin normal akıştan çıkarılıp, sayfanın herhangi bir yerine mutlak olarak konumlandırılmasını sağlar. Bu, öğenin diğer öğelerin konumlandırılmasını etkilemeden, belirli koordinatlara göre yerleştirilmesine olanak tanır.*/
+  top: 115%;
+  right: 7%;
+  background-color: #fff;
+  width: 50rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 3rem;
+  box-shadow: 0px 0px 25px 2px rgb(0 0 0 / 75%); /*
+  Öğeye bir gölge ekler. 0px 0px: Gölgenin yatay ve dikey ofseti.
+  25px: Gölgenin bulanıklık (blur) değeri.
+  2px: Gölgenin yayılma (spread) değeri.
+  rgb(0 0 0 / 75%): Gölgenin rengi (siyah) ve opaklığı (%75).*/
+  transform: scaleY(0);
+}
+.header .search-form.active {
+  transform: scaleY(1);
+}
+.header .search-form {
+  cursor: pointer; /*oku üzerine götürdüğümüzde el işareti yapar*/
+  font-size: 2.2rem;
+  margin-right: 1.5rem;
+  color: var(--black-color);
+}
+
+.header .search-form input {
+  width: 100%;
+}
+
+.header .logo img {
+  width: 10rem;
+}
+.header {
+  background-color: var(--color_1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7%;
+  margin: 2rem 7%;
+  border-radius: 20rem;
+  box-shadow: 0px 0px 17px -2px rgba(0, 0, 0, 0.75);
+  /* Burası sayfayı aşağıya kaydırdığımızda header bizi taki edecek */
+  position: sticky; /*Öğe, sayfa yukarı veya aşağı kaydırıldığında belirli bir noktaya kadar sabitlenir. Bu özellik, yapışkan navigasyon barları oluşturmak için sıkça kullanılır.*/
+  top: 0;
+  z-index: 1000; /* Diğerlerinin üzerine çıkmasını sağlar*/
+  /* Burası ^ */
+}
+.header .navbar a {
+  margin: 0 1rem;
+  font-size: 1.6rem;
+  color: var(--black-color);
+  border-bottom: 0.17rem solid transparent;
+}
+.header .navbar .active,
+.header .navbar a:hover {
+  border-color: var(--main-color);
+  padding-bottom: 0.5rem;
+}
+.header .buttons button {
+  cursor: pointer;
+  font-size: 2rem;
+  margin-left: 2rem;
+  background-color: transparent;
+}
+#menu-btn {
+  display: none;
+}
+/*! header end*/
+
+/*  Home Start  */
+.home {
+  min-height: 100vh;
+  background: url(../Image/MK9.png) no-repeat;
+  background-size: cover; /*değeri, arka plan görüntüsünün öğeyi tamamen kaplayacak şekilde boyutlandırılmasını sağlar. Görüntü, orijinal en boy oranını koruyarak büyütülür veya küçültülür, böylece öğenin tüm alanını doldurur.*/
+  background-position: center; /*center: Bu değer, görüntünün öğe içinde yatay ve dikey olarak ortalanmasını sağlar.*/
+  margin-top: -13.8rem;
+  display: flex;
+  align-items: center; /* Flexbox öğelerini (çocuk öğeleri) ana eksen (burada genellikle yatay eksen) boyunca ortalar. Yani, öğeler dikey olarak ortalanmış olur.*/
+}
+.home .content {
+  max-width: 60rem;
+}
+.home .content h3 {
+  font-size: 6rem;
+  color: #fff;
+}
+.home .content p {
+  font-size: 1.67rem;
+  font-weight: 300;
+  line-height: 1.8;
+  padding: 1 rem 0;
+  color: #fff;
+}
+
+/*  Home End */
+.yazi {
+  font-size: 1.67rem;
+  font-weight: 300;
+  line-height: 1.8;
+  padding: 1 rem 0;
+  color: var(--black-color);
+}
+/* travel Start */
+
+.travel .box-container {
+  display: grid; /*Grid Layout, öğenin içeriklerini iki boyutlu bir ızgara sistemi üzerinde düzenlemek için kullanılan güçlü bir CSS düzenleme modelidir*/
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(40rem, 1fr)
+  ); /*Bu fonksiyon, grid'in otomatik olarak belirli bir sayıda sütuna bölünmesini sağlar. "auto-fit", grid konteynerinin genişliğine göre otomatik olarak sütun sayısını ayarlar.*/
+  /*minmax(40rem, 1fr): Her bir sütunun minimum ve maksimum genişliğini belirler.
+    40rem: Minimum sütun genişliği 40rem'dir.
+    1fr: "Flexible" anlamına gelir. Grid konteynerinin kalan boş alanı, tüm sütunlar arasında eşit olarak dağıtılır.
+  */
+  gap: 1.5rem; /*Anlamı: Bu özellik, grid öğeleri arasındaki boşluğu belirler.
+  1.5rem: Hem satırlar hem de sütunlar arasında 1.5rem boşluk bırakılır.*/
+}
+.travel .box-container .box {
+  padding: 3rem;
+  background-color: #fff;
+  border-radius: 3rem;
+  background-color: #fff;
+  min-height: 58rem;
+  display: flex;
+  flex-direction: column; /*Bu özellik, Flexbox öğelerinin (çocuk öğeleri) dikey olarak (üstten alta) sıralanmasını sağlar.
+  */
+  align-items: flex-start; /*Bu özellik, Flexbox öğelerini ana eksen (bu durumda dikey eksen) boyunca başlangıç noktasına (başlangıç noktası genellikle üst taraf olur) hizalar.*/
+  justify-content: space-between; /*Bu özellik, Flexbox öğeleri arasındaki boşluğu eşit olarak dağıtır ve ilk ve son öğeleri konteynerin kenarlarına yerleştirir.*/
+}
+.travel .box-container .box img {
+  width: 100%;
+  object-fit: cover; /*cover değeri, görüntü veya videonun, içerik kutusu içindeki tüm alanı kaplayacak şekilde boyutlandırılmasını sağlar. Görüntü veya video, orijinal en boy oranını koruyarak büyütülür veya küçültülür, böylece kutuyu tamamen doldurur.*/
+  /*Bu özellik, bir <img> veya <video> gibi bir içerik kutusu içindeki bir görüntü veya videonun nasıl boyutlandırılacağını ve konumlandırılacağını belirler.*/
+}
+.travel .box-container .box .category {
+  font-size: 1.57rem;
+}
+.travel .box-container .box .box-head {
+  font-size: 1.9rem;
+}
+/* travel End */
+
+/* info-Box Start */
+.about .row {
+  background-color: var(--color_1);
+  margin: 1rem 0;
+  border-radius: 3rem;
+  padding: 3rem;
+}
+
+.about .row {
+  display: flex;
+  flex-wrap: wrap; /*flex-wrap: wrap; değeri, Flexbox konteynerindeki öğelerin, konteynerin genişliğini aştıklarında yeni bir satıra geçmesini sağlar.*/
+  column-gap: 2rem;
+}
+.about .row .image {
+  flex: 1 1 45rem; /**flex: 1 1 45rem; üç değeri içerir: flex-grow, flex-shrink ve flex-basis.
+
+  flex-grow: 1;: Bu değer, öğenin, konteyner içinde kalan boşluğu diğer öğelerle nasıl paylaşacağını belirler. 1 değeri, tüm öğelerin eşit olarak boşluğu paylaşacağı anlamına gelir.
+  flex-shrink: 1;: Bu değer, öğenin, konteynerin daralması durumunda ne kadar küçülebileceğini belirler. 1 değeri, tüm öğelerin eşit oranda küçülebileceği anlamına gelir.
+  flex-basis: 45rem; Bu değer, öğenin varsayılan boyutunu belirler. Öğenin genişliği veya yüksekliği, bu değere göre hesaplanır.*/
+}
+.about .row img {
+  width: 100%;
+}
+
+.about .row .content {
+  flex: 1 1 45rem;
+}
+.about .row .content h3 {
+  font-size: 3rem;
+  color: black;
+}
+.about .row .content p {
+  font-size: 1.6rem;
+  color: black;
+  padding: 1rem 0;
+  line-height: 1.8; /*satır yüksekliği*/
+}
+
+/* info-Box End */
+
+/* review Start*/
+.review .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1.5rem;
+}
+.review .box-container .box {
+  border: var(--black-color);
+  text-align: center;
+  padding: 3rem;
+  background-color: #fff;
+  border-radius: 3rem;
+  max-width: 42.7rem;
+}
+.review .box-container .box p {
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+  padding: 2rem 0;
+}
+.review .box-container .box .user {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  object-fit: cover; /*Bu CSS özelliği, bir <img> veya <video> gibi bir içerik kutusu içindeki bir görüntü veya videonun nasıl boyutlandırılacağını ve konumlandırılacağını belirler.
+  cover değeri, görüntü veya videonun, içerik kutusu içindeki tüm alanı kaplayacak şekilde boyutlandırılmasını sağla*/
+}
+.review .box-container .box h3 {
+  padding: 1rem 0;
+  font-size: 2rem;
+  color: var(--color_3);
+}
+
+/* review End*/
+
+/*Maps Start*/
+
+.harita {
+  display: flex;
+  flex: 1 1;
+  width: 720;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /*flex-direction: column;: Öğeleri dikey olarak sıralar.
+justify-content: center; Öğeleri ana eksen (bu durumda dikey) boyunca ortalar.*/
+
+  /* margin: 0 auto; */
+}
+/*Maps End*/
+
+/* Footer Start */
+.footer {
+  background-color: var(--color_4);
+  text-align: center;
+  color: var(--color_1);
+  font-size: 1.6rem;
+}
+
+/* Footer End */
+
+/*Spesfik Start*/
+.home .content h3 {
+  color: whitesmoke;
+}
+.marjin {
+  margin-top: 3rem;
+}
+
+.box-container .box .box-head img {
+  width: 100%;
+  overflow: hidden; /*overflow: hidden; değeri, öğenin sınırları dışına taşan içeriğin gizlenmesini sağlar.*/
+  object-fit: cover;
+  border-radius: 2rem;
+}
+
+.box-container .box .box-head img:hover {
+  transform: scale(1.17);
+} 
+
+/*Spesfik End*/
+/* Responsive Start */
+
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+  .header {
+    padding: 1.5rem 2rem;
+  }
+  .header .logo img {
+    height: 7rem;
+  }
+  section {
+    padding: 2rem;
+  }
+  .header .logo img {
+    padding-left: 0.7rem;
+  }
+}
+@media (max-width: 768px) {
+  #menu-btn {
+    display: inline-block;
+  }
+  .header .logo img {
+    padding-left: 0.7rem;
+  }
+  .header .navbar {
+    position: absolute; /*position: absolute;
+
+    Anlamı: Bu CSS özelliği, bir HTML öğesini normal akışından çıkararak sayfanın herhangi bir yerine mutlak olarak konumlandırır.*/
+    top: 95%;
+    background-color: #fff;
+    height: calc(100vh - 9rem);
+    width: 30rem;
+    box-shadow: 0px 20px 14px 0px rgb(0 0 0 / 75%);
+    right: -100%;
+  }
+  .header .navbar.active {
+    right: 3rem;
+  }
+
+  .header .navbar a {
+    color: var(--black-color);
+    display: block;
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+  }
+}
+form .formalite {
+  margin-top: 1rem;
+  width: 25rem;
+}
+
+/* Responsive End */
+
+
+
